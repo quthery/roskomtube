@@ -1,0 +1,6 @@
+*.webm
+*.mp4
+.idea
+
+url_resolver/.venv
+.venv
