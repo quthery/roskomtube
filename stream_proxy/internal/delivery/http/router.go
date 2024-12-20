@@ -1,16 +1,18 @@
 package http
 
-
 import (
 	v1_handlers "UFetch/internal/delivery/http/v1"
-	"github.com/gin-gonic/gin"
+
+	"github.com/go-chi/chi/v5"
 )
 
-func InitAPI() *gin.Engine {
-	r := gin.Default()
-	v1 := r.Group("/v1")
-	{
-		v1.GET("/youtube", v1_handlers.ProxyYouTubeStream)
-	}
+func InitAPI() *chi.Mux {
+	r := chi.NewRouter()
+	v1 := chi.NewRouter()
+
+	r.Mount("/v1", v1)
+
+	v1.Get("/youtube", v1_handlers.ProxyYouTubeStream)
+
 	return r
 }

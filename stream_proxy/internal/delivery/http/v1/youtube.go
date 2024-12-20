@@ -1,32 +1,31 @@
 package v1
 
 import (
-	"github.com/gin-gonic/gin"
 	"io"
 	"log"
 	"net/http"
 )
 
-func ProxyYouTubeStream(c *gin.Context) {
-	parsedURL := c.Query("youtube_url")
+func ProxyYouTubeStream(w http.ResponseWriter, r *http.Request) {
+	parsedURL := r.URL.Query().Get("youtube_url")
 
+	client := &http.Client{}
 	req, err := http.NewRequest("GET", parsedURL, nil)
 	if err != nil {
-		c.String(http.StatusInternalServerError, "Error creating request")
+		http.Error(w, "Error creating request", http.StatusInternalServerError)
 		log.Printf("Error creating request: %v", err)
 		return
 	}
 
-	for key, values := range c.Request.Header {
+	for key, values := range r.Header {
 		for _, value := range values {
 			req.Header.Add(key, value)
 		}
 	}
 
-	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		c.String(http.StatusBadGateway, "Error fetching YouTube stream")
+		http.Error(w, "Error fetching YouTube stream", http.StatusBadGateway)
 		log.Printf("Error fetching YouTube stream: %v", err)
 		return
 	}
@@ -34,17 +33,14 @@ func ProxyYouTubeStream(c *gin.Context) {
 
 	for key, values := range resp.Header {
 		for _, value := range values {
-			c.Writer.Header().Add(key, value)
+			w.Header().Add(key, value)
 		}
 	}
-	c.Writer.WriteHeader(resp.StatusCode)
+	w.WriteHeader(resp.StatusCode)
 
-	_, err = io.Copy(c.Writer, resp.Body)
-	if err != nil {
+	if _, err := io.Copy(w, resp.Body); err != nil {
 		log.Printf("Error streaming response body: %v", err)
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"Error streaming response body: %v": err,
-		})
+		http.Error(w, "Error streaming response body", http.StatusInternalServerError)
 		return
 	}
 }
