@@ -1,16 +1,30 @@
 package v1
 
 import (
+	"errors"
 	"io"
 	"log"
 	"net/http"
+	"syscall"
+	"time"
 )
 
-func ProxyYouTubeStream(w http.ResponseWriter, r *http.Request) {
-	parsedURL := r.URL.Query().Get("youtube_url")
+func ProxyStream(w http.ResponseWriter, r *http.Request) {
+	parsedURL := r.URL.Query().Get("url")
+	if parsedURL == "" {
+		http.Error(w, "Missing URL parameter", http.StatusBadRequest)
+		return
+	}
 
-	client := &http.Client{}
-	req, err := http.NewRequest("GET", parsedURL, nil)
+	transport := &http.Transport{
+		DisableKeepAlives: false,
+	}
+	client := &http.Client{
+		Transport: transport,
+		Timeout:   30 * time.Second,
+	}
+
+	req, err := http.NewRequestWithContext(r.Context(), "GET", parsedURL, nil)
 	if err != nil {
 		http.Error(w, "Error creating request", http.StatusInternalServerError)
 		log.Printf("Error creating request: %v", err)
@@ -22,11 +36,11 @@ func ProxyYouTubeStream(w http.ResponseWriter, r *http.Request) {
 			req.Header.Add(key, value)
 		}
 	}
-
 	resp, err := client.Do(req)
+
 	if err != nil {
-		http.Error(w, "Error fetching YouTube stream", http.StatusBadGateway)
-		log.Printf("Error fetching YouTube stream: %v", err)
+		http.Error(w, "Error fetching stream", http.StatusBadGateway)
+		log.Printf("Error fetching stream: %v", err)
 		return
 	}
 	defer resp.Body.Close()
@@ -36,11 +50,16 @@ func ProxyYouTubeStream(w http.ResponseWriter, r *http.Request) {
 			w.Header().Add(key, value)
 		}
 	}
+
 	w.WriteHeader(resp.StatusCode)
 
-	if _, err := io.Copy(w, resp.Body); err != nil {
+	buffer := make([]byte, 32*1024)
+	if _, err := io.CopyBuffer(w, resp.Body, buffer); err != nil {
+		if errors.Is(err, syscall.EPIPE) || errors.Is(err, io.ErrUnexpectedEOF) {
+			log.Printf("Client closed connection: %v", err)
+			return
+		}
 		log.Printf("Error streaming response body: %v", err)
-		http.Error(w, "Error streaming response body", http.StatusInternalServerError)
 		return
 	}
 }

@@ -1,16 +1,17 @@
 package main
 
 import (
-	"UFetch/internal/delivery/http"
+  router "UFetch/internal/delivery/http"
 	"fmt"
 	h "net/http"
 )
 
 func main() {
-	fmt.Println("Hello World")
-	router := http.InitAPI()
-
-	if err := h.ListenAndServe(":8080", router); err != nil {
+  port := ":8080"
+  fmt.Printf("Started at %s", port)
+	router := router.InitAPI()
+  
+  if err := h.ListenAndServe(port , router); err != nil {
 		panic(err)
 	}
 }

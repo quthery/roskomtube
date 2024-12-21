@@ -11,8 +11,7 @@ func InitAPI() *chi.Mux {
 	v1 := chi.NewRouter()
 
 	r.Mount("/v1", v1)
-
-	v1.Get("/youtube", v1_handlers.ProxyYouTubeStream)
+	v1.Get("/stream", v1_handlers.ProxyStream)
 
 	return r
 }
