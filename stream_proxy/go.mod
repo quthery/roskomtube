@@ -1,4 +1,4 @@
-module UFetch
+module roskomtube
 
 go 1.23
 
