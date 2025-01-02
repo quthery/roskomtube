@@ -4,7 +4,8 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"roskomtube/pkg/http/client"
+	"net/url"
+	"roskomtube/pkg/http/lib"
 )
 
 func ProxyStream(w http.ResponseWriter, r *http.Request) {
@@ -14,29 +15,38 @@ func ProxyStream(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	client := client.NewClient(true, parsedURL)
+	url, err := url.Parse(parsedURL)
+	if err != nil {
+		http.Error(w, "Invalid URL parameter", http.StatusBadRequest)
+		return
+	}
 
-	resp, err := client.Get()
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", url.String(), nil)
+	if err != nil {
+		http.Error(w, "Error creating request: "+err.Error(), http.StatusInternalServerError)
+		return
+
+	}
+
+	lib.CopyHeaders(req.Header, r.Header)
+
+	resp, err := client.Do(req)
 	if err != nil {
 		http.Error(w, "Error fetching URL: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
 
-	copyHeaders(w, resp.Header)
+	lib.CopyHeaders(w.Header(), resp.Header)
 	w.WriteHeader(resp.StatusCode)
-	startStream(w, resp.Body)
-}
 
-func copyHeaders(w http.ResponseWriter, headers http.Header) {
-	for key, values := range headers {
-		w.Header()[key] = values
-	}
-}
-
-func startStream(w io.Writer, r io.Reader) {
-	_, err := io.Copy(w, r)
-	if err != nil {
+	if err := streamBody(w, resp.Body); err != nil {
 		log.Printf("Error streaming: %v", err)
 	}
+}
+
+func streamBody(dst io.Writer, src io.Reader) error {
+	_, err := io.Copy(dst, src)
+	return err
 }

@@ -13,7 +13,7 @@ func InitAPI() *chi.Mux {
 	r.Use(middleware.Logger)
 
 	r.Route("/v1", func(v1 chi.Router) {
-		r.Get("/stream", v1_handlers.ProxyStream)
+		v1.Get("/stream", v1_handlers.ProxyStream)
 	})
 
 	return r

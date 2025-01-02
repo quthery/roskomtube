@@ -4,3 +4,7 @@
 
 url_resolver/.venv
 .venv
+*.pyc
+url_resolver/.ropeproject
+.ropeproject
+.venv
