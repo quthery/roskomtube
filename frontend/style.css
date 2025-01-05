@@ -1,15 +1,11 @@
 nav {
   display: flex; /* Use flexbox for layout */
-  background-color: #cfddd8;
+  background-color: #b4c2bf;
+
   justify-content: space-between; /* Space between left and right */
   align-items: center;
   text-align: center; /* Center items vertically */
   overflow: hidden;
-  background: linear-gradient(
-    45deg,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
   border-radius: 10px 10px 10px 0px;
   box-shadow: 0px -52px 227px 3px rgba(133, 126, 133, 1);
 }
@@ -136,16 +132,13 @@ nav a.active {
   background-color: #2196f3;
   color: white;
 }
+
 .sidebar {
   padding: 0;
-  width: 73.5px;
+  width: 74px;
   position: fixed;
   box-shadow: 0px -82px 207px -73px rgb(207 221 216);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+  background-color: #b4c2bf;
   height: 100%;
   overflow: hidden;
 }
@@ -156,6 +149,7 @@ nav a.active {
 }
 .sidebar-link {
   margin-left: 7px;
+  margin-right: 7px;
   display: block;
   color: black;
   text-decoration: none;
