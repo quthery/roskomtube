@@ -1,15 +1,25 @@
+body,
+html {
+  box-sizing: border-box;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
 nav {
-  display: flex; /* Use flexbox for layout */
+  display: flex;
   background-color: #b4c2bf;
-
   justify-content: space-between; /* Space between left and right */
   align-items: center;
   text-align: center; /* Center items vertically */
-  overflow: hidden;
+  overflow: visible;
+  height: 60px;
   border-radius: 10px 10px 10px 0px;
   box-shadow: 0px -52px 227px 3px rgba(133, 126, 133, 1);
 }
-
+body,
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
 nav .home {
   color: black;
   text-align: center;
@@ -51,6 +61,7 @@ nav .center-content {
   text-align: center; /* Center the content in this section */
 }
 .search-img {
+  background-color: #b4c2bf;
   width: 15px;
   height: 15px;
 }
@@ -132,14 +143,13 @@ nav a.active {
   background-color: #2196f3;
   color: white;
 }
-
 .sidebar {
   padding: 0;
   width: 74px;
   position: fixed;
   box-shadow: 0px -82px 207px -73px rgb(207 221 216);
   background-color: #b4c2bf;
-  height: 100%;
+  height: calc(100vh - 60px);
   overflow: hidden;
 }
 
@@ -151,8 +161,6 @@ nav a.active {
   margin-left: 7px;
   margin-right: 7px;
   display: block;
-  color: black;
-  text-decoration: none;
   padding: 20px;
   width: 20px;
   height: 20px;
@@ -162,54 +170,88 @@ nav a.active {
 }
 .sidebar-link:hover {
   cursor: pointer;
-  background-color: #d2d4d3;
-  background: none;
+  background-color: #c6c7c7;
 }
+
+.content {
+  margin-left: 74px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Ровно 5 колонок */
+  gap: 20px; /* Расстояние между элементами */
+}
+
+.video-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  background-color: snow;
+  border: 1px solid #ccc;
+  background-color: #b4c2bf;
+  box-shadow: 0px 0px 31px -20px rgba(0, 0, 0, 1);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.video-item img {
+  width: 320px; /* Ширина изображения заполняет контейнер */
+  height: 170px; /* Фиксированная высота изображения */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.video-item p {
+  margin: 8px 0 0 0;
+  padding: 0;
+}
+
 .search-input {
-  border: 2px solid rgb(181, 174, 174);
-  border-radius: 13px;
-  padding-left: 9.5px;
+  border: 2px solid rgb(96, 84, 96);
+  border-radius: 7px; /* Прямоугольные углы */
+  padding: 10px 7px;
+  overflow-y: hidden; /* Увеличенный внутренний отступ */
   width: 500px;
-  height: 23px;
+  height: 15px; /* Увеличенная высота для удобства ввода */
+  font-size: 18px; /* Увеличенный размер шрифта */
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s; /* Плавный переход */
+  background-color: rgba(240, 248, 255, 0.5); /* Легкий фон при фокусировке */
 }
+
+/* Активное/текущее состояние */
 .search-input:focus {
   outline: none;
-  border: 0.5px solid rgb(123, 117, 117);
+  border-color: rgb(130, 110, 135); /* Цвет рамки при фокусировке */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Тень при фокусировке */
+  background-color: rgba(240, 248, 255, 0.5); /* Легкий фон при фокусировке */
 }
-/* Active/current link */
 
 /* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
 
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
     height: auto;
     position: relative;
   }
-  .sidebar a {
+
+  .sidebar-link {
     float: left;
+    margin: 10px;
   }
-  div.content {
+
+  .content {
     margin-left: 0;
   }
 }
 
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
+  .sidebar-link {
     float: none;
+    text-align: center;
   }
 }
