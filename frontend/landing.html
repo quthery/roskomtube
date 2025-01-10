@@ -29,7 +29,10 @@
         </div>
       </div>
       <div class="profile-container">
-        <img class="notifications-img" src="bell.png" alt="notifications" />
+        <label id="switch" class="switch">
+          <input type="checkbox" onchange="toggleTheme()" id="slider" />
+          <span class="slider round"></span>
+        </label>
         <a class="profile-link" href="#" class="Profile">
           <img class="profile-img" src="avatar.jpg" alt="profile" />
         </a>
@@ -95,10 +98,7 @@
         <img src="preview.jpeg" alt="Видео 4 превью" />
         <p>Название видео 4</p>
       </div>
-      <div class="video-item">
-        <img src="preview.jpeg" alt="Видео 4 превью" />
-        <p>Название видео 4</p>
-      </div>
     </div>
   </body>
+  <script src="script.js"></script>
 </html>
