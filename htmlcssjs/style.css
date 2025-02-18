@@ -1,0 +1,329 @@
+body,
+html {
+  box-sizing: border-box;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between; /* Space between left and right */
+  align-items: center;
+  text-align: center; /* Center items vertically */
+  overflow: visible;
+  height: 60px;
+  border-radius: 10px 10px 10px 0px;
+}
+
+nav .home {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 0px;
+  font-size: 17px;
+}
+
+.search-container {
+  width: 500px;
+  margin-top: 15px;
+  margin-left: 30%;
+}
+
+nav .Profile {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.input-search-container {
+  display: flex;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0;
+  height: 200%;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.5s;
+}
+
+.input-search-container:hover {
+  overflow: visible;
+  box-shadow: 0px 32px 131px -3px rgba(23, 7, 23, 1);
+  transform: translateY(5px) scale(1.5);
+}
+
+nav .center-content {
+  flex-grow: 1; /* Allow this section to grow and take up available space */
+  text-align: center; /* Center the content in this section */
+}
+
+.search-img {
+  width: 15px;
+  height: 15px;
+}
+
+.search-button {
+  border: medium none;
+  background-image: none;
+  background-color: transparent;
+}
+
+.notifications-img {
+  width: 30px;
+  height: 30px;
+  padding-top: 10px;
+  padding-right: 30px;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.profile-link {
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+}
+
+.profile-container {
+  display: flex;
+  margin-right: 10px;
+}
+
+.home-text {
+  color: black;
+  padding-left: 10px;
+  text-decoration: none;
+  font-size: 27px;
+  font-weight: 400;
+  font-family: "Impact", sans-serif;
+}
+
+.logo-img {
+  width: 30px;
+  height: 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.home-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  overflow: hidden;
+  height: 30px;
+}
+
+.home-link:hover {
+  cursor: pointer;
+  color: #000000;
+  background: none;
+}
+
+.search-button:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+nav a.active {
+  background-color: #2196f3;
+  color: white;
+}
+
+.sidebar {
+  padding: 0;
+  width: 74px;
+  position: fixed;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.sidebar-img {
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar-link {
+  margin-left: 7px;
+  margin-right: 7px;
+  display: block;
+  padding: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #cad0ce;
+  border-radius: 30%;
+  margin-top: 25px;
+}
+
+.sidebar-link:hover {
+  cursor: pointer;
+  background-color: #c6c7c7;
+}
+
+.content {
+  margin-left: 74px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Ровно 5 колонок */
+  column-gap: 25px;
+  row-gap: 9px; /* Расстояние между элементами */
+}
+
+/* Стили для переключателя */
+.switch {
+  display: flex; /* Для правильного выравнивания */
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px; /* Добавим отступ слева, чтобы слайдер не был прямо у края */
+}
+
+/* Прячем чекбокс */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Стиль для слайдера */
+.slider {
+  position: relative;
+  cursor: pointer;
+  width: 60px; /* Ширина слайдера */
+  height: 34px; /* Высота слайдера */
+  background-color: #ccc; /* Цвет фона в неактивном состоянии */
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px; /* Скругляем углы */
+  margin-right: 20px;
+  box-shadow: 0 0px 15px rgba(32, 32, 32, 0.24); /* Тень слайдера */
+}
+
+/* Стиль для круглой кнопки слайдера */
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 26px; /* Высота кнопки */
+  width: 26px; /* Ширина кнопки */
+  left: 4px; /* Отступ слева от края слайдера */
+  top: 4px; /* Отступ сверху */
+  border-radius: 50%; /* Делаем круглой */
+  background-color: white;
+  background: url("https://i.ibb.co/FxzBYR9/night.png") no-repeat center; /* Иконка ночной темы */
+  background-size: 16px 16px; /* Размер иконки */
+  transition: 0.4s;
+}
+
+/* Стиль при переключении (когда checkbox включен) */
+input:checked + .slider {
+  background-color: #2196f3; /* Цвет фона при активации */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3; /* Тень при фокусе */
+}
+
+/* Стиль для круглой кнопки при переключении */
+input:checked + .slider:before {
+  transform: translateX(26px); /* Перемещение кнопки вправо */
+  background: url("https://i.ibb.co/7JfqXxB/sunny.png") no-repeat center; /* Иконка светлой темы */
+  background-size: 16px 16px; /* Размер иконки */
+}
+
+/* Скругление слайдера */
+.slider.round {
+  border-radius: 34px;
+}
+
+/* Скругление кнопки */
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.video-item {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border: 2px solid rgb(96, 84, 96);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease;
+  align-items: flex-start;
+  text-align: left;
+  border-radius: 8px;
+}
+.video-item:hover {
+  cursor: pointer;
+}
+
+.video-item img {
+  width: 320px; /* Ширина изображения заполняет контейнер */
+  height: 170px; /* Фиксированная высота изображения */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.video-item p {
+  margin: 8px 0 0 0;
+  padding: 0;
+}
+
+.search-input {
+  border: 2px solid rgb(96, 84, 96);
+  border-radius: 7px; /* Прямоугольные углы */
+  padding: 10px 7px;
+  overflow-y: hidden; /* Увеличенный внутренний отступ */
+  width: 500px;
+  height: 15px; /* Увеличенная высота для удобства ввода */
+  font-size: 18px; /* Увеличенный размер шрифта */
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s; /* Плавный переход */
+  background-color: rgba(240, 248, 255, 0.5); /* Легкий фон при фокусировке */
+}
+
+/* Активное/текущее состояние */
+.search-input:focus {
+  outline: none;
+  border-color: rgb(130, 110, 135); /* Цвет рамки при фокусировке */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Тень при фокусировке */
+  background-color: rgba(240, 248, 255, 0.5); /* Легкий фон при фокусировке */
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .sidebar-link {
+    float: left;
+    margin: 10px;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar-link {
+    float: none;
+    text-align: center;
+  }
+}

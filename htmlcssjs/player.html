@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoskomTube</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <link rel="stylesheet" type="text/css" href="player.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+  </head>
+  <body>
+    <div class="video-container">
+      <video id="videoPlayer" class="plyr" controls>
+        <source src="video.mp4" type="video/mp4" />
+      </video>
+      <p class="video-title">
+        😱Как Строиться ЧАЧА БРИДЖЕМ | Туториал😱CHA CHA BRIDGE 🔥 0 CPS
+        СТРОИТЕЛЬСТВО!🔥
+      </p>
+      <div class="channel-info">
+        <img class="channel-img" src="avatar.jpg" alt="avatar" />
+        <div class="channel-name-container">
+          <p class="channel-name">RoskomTube</p>
+          <p class="channel-subscribers">500k subscribers</p>
+        </div>
+        <button class="subscribe-btn">Подписаться</button>
+        <div class="like-dislike-container">
+          <div class="likes-container">
+            <button class="like-btn">
+              <img src="like-svgrepo-com.svg" alt="like" class="like-img" />
+            </button>
+            <p class="likes-count">1231</p>
+          </div>
+          <button class="dislike-btn">
+            <img
+              src="dislike-svgrepo-com.svg"
+              alt="dislike"
+              class="dislike-img"
+            />
+          </button>
+        </div>
+        <div class="share-container">
+          <img class="share-img" src="share.svg" alt="share icon" />
+          <p class="share-text">Поделиться</p>
+        </div>
+        <div class="remove-ad-container">
+          <button class="remove-ad-btn">
+            <img
+              class="ad-img"
+              src="advertisement-svgrepo-com.svg"
+              alt="ad-logo"
+            />
+            Добавить таймкод на рекламу
+          </button>
+        </div>
+      </div>
+      <div class="video-discription">
+        <p class="video-discription-text">
+          😱Как Строиться ЧАЧА БРИДЖЕМ | Туториал😱CHA CHA BRIDGE 🔥 0 CPS
+          СТРОИТЕЛЬСТВО!🔥
+        </p>
+
+        <p class="video-discription-text">
+          😱Как Строиться ЧАЧА БРИДЖЕМ | Туториал😱CHA CHA BRIDGE 🔥 0 CPS
+          СТРОИТЕЛЬСТВО!🔥
+        </p>
+        <p class="video-discription-text">
+          😱Как Строиться ЧАЧА БРИДЖЕМ | Туториал😱CHA CHA BRIDGE 🔥 0 CPS
+          СТРОИТЕЛЬСТВО!🔥
+        </p>
+      </div>
+
+      <p class="video-discription-text">
+        lorem lorem lroem kfdjfksadj faskfajsdk jasdlk fjasdkf jasdkfjs
+        fksdafjskafjskadfjsadkfjsadkfjaskdfjsaklfskaad fasdjfksjf
+      </p>
+    </div>
+
+    <audio id="audioPlayer">
+      <source src="audio.mp3" type="audio/mp3" />
+    </audio>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("videoPlayer");
+        const audio = document.getElementById("audioPlayer");
+
+        // Инициализируем Plyr с кнопками управления
+        const player = new Plyr(video, {
+          controls: ["play", "progress", "current-time"], // Без fullscreen
+        });
+
+        // Полностью отключаем звук у видео
+        video.muted = false;
+        video.volume = 0;
+
+        // Запуск и пауза
+        player.on("play", () => audio.play());
+        player.on("pause", () => audio.pause());
+
+        // Перемотка
+        player.on("seeked", () => {
+          audio.currentTime = video.currentTime;
+        });
+
+        // Создаём кастомный контрол громкости
+        const controlsContainer = document.querySelector(".plyr__controls");
+
+        const volumeControl = document.createElement("div");
+        volumeControl.classList.add("custom-volume");
+        volumeControl.innerHTML = `
+                <button id="muteBtn" class="mute-btn">🔊</button>
+                <input type="range" id="audioVolume" min="0" max="1" step="0.05" value="1">
+            `;
+        controlsContainer.appendChild(volumeControl);
+
+        // Сохраняем текущее значение громкости
+        let savedVolume = 1;
+
+        // Обработчик изменения громкости
+        const volumeSlider = document.getElementById("audioVolume");
+        volumeSlider.addEventListener("input", (event) => {
+          audio.volume = event.target.value;
+          savedVolume = event.target.value; // Сохраняем значение громкости
+        });
+
+        // Обработчик кнопки mute
+        const muteBtn = document.getElementById("muteBtn");
+        muteBtn.addEventListener("click", () => {
+          audio.muted = !audio.muted;
+          muteBtn.textContent = audio.muted ? "🔇" : "🔊";
+
+          // Если звук выключен, скрываем ползунок
+          if (audio.muted) {
+            volumeSlider.classList.add("muted");
+            volumeSlider.value = 0; // Устанавливаем значение в 0
+          } else {
+            volumeSlider.classList.remove("muted");
+            volumeSlider.value = savedVolume; // Восстанавливаем ползунок на сохранённое значение
+            audio.volume = savedVolume; // Восстанавливаем громкость
+          }
+        });
+
+        // Кастомная кнопка fullscreen
+        const fullscreenBtn = document.createElement("button");
+        fullscreenBtn.classList.add("custom-fullscreen-btn");
+        fullscreenBtn.textContent = "⛶"; // Символ или текст для кнопки
+        controlsContainer.appendChild(fullscreenBtn);
+
+        // Обработчик для кнопки fullscreen
+        fullscreenBtn.addEventListener("click", function () {
+          const playerContainer = document.querySelector(".plyr");
+
+          // Проверяем, если уже в полноэкранном режиме
+          if (!document.fullscreenElement) {
+            playerContainer.requestFullscreen();
+          } else {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            }
+          }
+        });
+
+        // Слушаем событие на изменение полноэкранного режима
+        document.addEventListener("fullscreenchange", function () {
+          const playerContainer = document.querySelector(".plyr");
+          if (document.fullscreenElement) {
+            playerContainer.classList.add("fullscreen");
+          } else {
+            playerContainer.classList.remove("fullscreen");
+          }
+        });
+
+        // Добавляем обработчик для горячих клавиш
+        document.addEventListener("keydown", function (event) {
+          // Пробел — воспроизведение/пауза
+          if (event.key === " " || event.key === "Spacebar") {
+            if (video.paused) {
+              video.play();
+            } else {
+              video.pause();
+            }
+          }
+          // Клавиша "f" — полноэкранный режим
+          if (event.key === "f" || event.key === "а") {
+            const playerContainer = document.querySelector(".plyr");
+            if (!document.fullscreenElement) {
+              playerContainer.requestFullscreen();
+            } else {
+              if (document.exitFullscreen) {
+                document.exitFullscreen();
+              }
+            }
+          }
+          // Стрелка влево — перемотка на 10 секунд назад
+          if (event.key === "ArrowLeft") {
+            video.currentTime = Math.max(0, video.currentTime - 5);
+          }
+          // Стрелка вправо — перемотка на 10 секунд вперед
+          if (event.key === "ArrowRight") {
+            video.currentTime = Math.min(video.duration, video.currentTime + 5);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
