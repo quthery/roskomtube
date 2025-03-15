@@ -12,10 +12,18 @@ nav {
   text-align: center; /* Center items vertically */
   overflow: visible;
   height: 60px;
-  border-radius: 10px 10px 10px 0px;
+  border-radius: 10px 10px 10px 10px;
+  position: fixed; /* Закрепляем навигацию */
+  top: 0; /* Прикрепляем к верхней части экрана */
+  width: 100%; /* Занимает всю ширину экрана */
+  z-index: 1000; /* При необходимости, чтобы быть поверх других элементов */
 }
 
-nav .home {
+body {
+  padding-top: 60px; /* Добавляем отступ сверху, равный высоте nav */
+}
+
+nav .homeLink {
   color: black;
   text-align: center;
   text-decoration: none;
@@ -23,22 +31,22 @@ nav .home {
   font-size: 17px;
 }
 
-.search-container {
+.searchContainer {
   width: 500px;
   margin-top: 15px;
   margin-left: 30%;
 }
 
-nav .Profile {
+nav .profile {
   color: black;
   text-align: center;
   text-decoration: none;
   font-size: 17px;
 }
 
-.input-search-container {
+.inputSearchContainer {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 15px;
   box-shadow: 0;
   height: 200%;
@@ -47,56 +55,58 @@ nav .Profile {
     box-shadow 0.5s;
 }
 
-.input-search-container:hover {
+.inputSearchContainer:hover {
   overflow: visible;
   box-shadow: 0px 32px 131px -3px rgba(23, 7, 23, 1);
   transform: translateY(5px) scale(1.5);
 }
 
-nav .center-content {
+nav .centerContent {
   flex-grow: 1; /* Allow this section to grow and take up available space */
-  text-align: center; /* Center the content in this section */
+  text-align: center;
 }
 
-.search-img {
+.searchImg {
   width: 15px;
   height: 15px;
 }
 
-.search-button {
+.searchButton {
   border: medium none;
   background-image: none;
   background-color: transparent;
 }
 
-.notifications-img {
+.notificationsImg {
   width: 30px;
   height: 30px;
   padding-top: 10px;
   padding-right: 30px;
 }
 
-.profile-img {
+.profileImg {
   width: 50px;
   height: 50px;
   margin-right: 15px;
   object-fit: cover;
 }
 
-.profile-link {
+.profileLink {
   display: inline-block;
-  border-radius: 50%;
+  align-items: center;
   overflow: hidden;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
 }
 
-.profile-container {
+.profileContainer {
   display: flex;
-  margin-right: 10px;
+  margin-top: 5px;
+  margin-right: 35px;
 }
 
-.home-text {
+.homeText {
   color: black;
   padding-left: 10px;
   text-decoration: none;
@@ -105,9 +115,9 @@ nav .center-content {
   font-family: "Impact", sans-serif;
 }
 
-.logo-img {
-  width: 30px;
-  height: 30px;
+.logoImg {
+  width: 50px;
+  height: 50px;
 }
 
 .logo {
@@ -116,7 +126,7 @@ nav .center-content {
   margin-left: 15px;
 }
 
-.home-link {
+.homeLink {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -124,13 +134,13 @@ nav .center-content {
   height: 30px;
 }
 
-.home-link:hover {
+.homeLink:hover {
   cursor: pointer;
   color: #000000;
   background: none;
 }
 
-.search-button:hover {
+.searchButton:hover {
   cursor: pointer;
   scale: 1.1;
 }
@@ -143,45 +153,6 @@ nav a:hover {
 nav a.active {
   background-color: #2196f3;
   color: white;
-}
-
-.sidebar {
-  padding: 0;
-  width: 74px;
-  position: fixed;
-  height: calc(100vh - 60px);
-  overflow: hidden;
-}
-
-.sidebar-img {
-  width: 20px;
-  height: 20px;
-}
-
-.sidebar-link {
-  margin-left: 7px;
-  margin-right: 7px;
-  display: block;
-  padding: 20px;
-  width: 20px;
-  height: 20px;
-  background-color: #cad0ce;
-  border-radius: 30%;
-  margin-top: 25px;
-}
-
-.sidebar-link:hover {
-  cursor: pointer;
-  background-color: #c6c7c7;
-}
-
-.content {
-  margin-left: 74px;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Ровно 5 колонок */
-  column-gap: 25px;
-  row-gap: 9px; /* Расстояние между элементами */
 }
 
 /* Стили для переключателя */
@@ -254,35 +225,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.video-item {
-  display: flex;
-  flex-direction: column;
-  padding: 5px;
-  border: 2px solid rgb(96, 84, 96);
-  border-radius: 8px;
-  margin-bottom: 10px;
-  transition: all 0.5s ease;
-  align-items: flex-start;
-  text-align: left;
-  border-radius: 8px;
-}
-.video-item:hover {
-  cursor: pointer;
-}
-
-.video-item img {
-  width: 320px; /* Ширина изображения заполняет контейнер */
-  height: 170px; /* Фиксированная высота изображения */
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.video-item p {
-  margin: 8px 0 0 0;
-  padding: 0;
-}
-
-.search-input {
+.searchInput {
   border: 2px solid rgb(96, 84, 96);
   border-radius: 7px; /* Прямоугольные углы */
   padding: 10px 7px;
@@ -297,33 +240,9 @@ input:checked + .slider:before {
 }
 
 /* Активное/текущее состояние */
-.search-input:focus {
+.searchInput:focus {
   outline: none;
   border-color: rgb(130, 110, 135); /* Цвет рамки при фокусировке */
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Тень при фокусировке */
   background-color: rgba(240, 248, 255, 0.5); /* Легкий фон при фокусировке */
-}
-
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-
-  .sidebar-link {
-    float: left;
-    margin: 10px;
-  }
-
-  .content {
-    margin-left: 0;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .sidebar-link {
-    float: none;
-    text-align: center;
-  }
 }

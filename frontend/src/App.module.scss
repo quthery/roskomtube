@@ -1,24 +1,11 @@
-$primary: blueviolet;
-$text-color: black;
-
-#root {
-    background-color: aquamarine;
-}
-
-h1 {
-    color: $text-color;
-    size: 18px;
-}
-
-
-img {
-    width: 200px;
-    height: auto;
-    margin: 20px;
-}
-
-.base{
-max-width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+.content {
+  margin-left: 74px;
+  padding: 10px;
+  padding-top: 5px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* Ровно 5 колонок */
+  column-gap: 25px;
+  row-gap: 9px;
+  /* Расстояние между элементами */
 }
