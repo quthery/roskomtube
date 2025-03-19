@@ -1,9 +1,7 @@
 import styles from './styles.module.css';
 import avatar from '/avatar.jpg'
-import sunny from '/sunny.png'
-import night from '/night.png'
 
-export function Header() {
+export function NavBar() {
   return (
     <>
       <nav>
@@ -40,3 +38,4 @@ export function Header() {
     </>
   );
 }
+

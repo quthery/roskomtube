@@ -21,7 +21,14 @@
   border-radius: 8px;
 }
 
-.videoItem p {
+a {
+
+  color: black;
+
+  text-decoration:double ;
+  border: none ;
+}
+p {
   margin: 8px 0 0 0;
   padding: 0;
 }
