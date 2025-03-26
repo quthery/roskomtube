@@ -5,6 +5,7 @@ export function Player() {
   return <>
     <Layout>
       <VideoPlayer />
+
     </Layout>
   </>
 }

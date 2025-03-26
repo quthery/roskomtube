@@ -88,14 +88,15 @@
   border: 0px solid rgba(100, 100, 100, 1);
   margin-top: 10px;
   border-radius: 15px;
-  padding-left: 10px;
-  padding-top: 1px;
+  padding-inline: 15px;
+  padding-top: 5px;
   padding-bottom: 1px;
   gap: 1px;
   background-color: rgba(99, 97, 97, 0.4);
 }
 
 .video-discription-text {
+  margin-block: 10px;
   font-size: 15px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-weight: bold;
@@ -278,4 +279,57 @@
   width: 30px;
   height: 30px;
   margin-right: 2.5px;
+}
+
+.video-info-desc {
+  display: flex;
+  height: 20px;
+  margin-bottom: 15px;
+  margin-left: 2px;
+  gap: 10px;
+}
+
+.views {
+  margin-top: 6px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 16px;
+  margin-bottom: 0px;
+}
+
+.posted-ago {
+  margin-top: 6px;
+  font-size: 16px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 0px;
+}
+.comments-container {
+  margin-top: 5px;
+}
+.comments-info {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+.sort-comments-btn {
+  height: 30px;
+}
+.comments-input-container {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.comments-input {
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid rgba(99, 97, 97, 0.4);
+  padding-left: 10px;
+  color: black;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  outline: none;
+}
+
+comments-input:hover {
+  transition: border-color 0.3s ease;
 }
