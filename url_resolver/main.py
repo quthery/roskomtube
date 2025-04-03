@@ -1,17 +1,29 @@
 from fastapi import FastAPI
 from yt_dlp import YoutubeDL
-
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import json
 
-
 app = FastAPI()
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:5173",
+    "http://localhost:8080",
+]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 ydl_opts = {
-        'format': 'bestvideo[height<=1080]+bestaudio/best[height<=1080]',  # Получить лучший формат для аудио и видео
+       'format': 'bestvideo[height<=1080]+bestaudio/best[height<=1080]',  # Получить лучший формат для аудио и видео
         'noplaylist': True,  # Игнорировать плейлисты  # Отключить вывод лишней информации  # Объединить аудио и видео в один файл (если требуется)
     }
-
 @app.post("/")
 async def yt_stream_url(url: str):
     with YoutubeDL(ydl_opts) as ydl:
@@ -36,6 +48,7 @@ async def yt_stream_url(url: str):
             elif format.get("acodec") != "none" and format.get("vcodec") == "none" and format.get("url", "").startswith("https://manifest.googlevideo.com") == False:
                 resp["audio"] = format["url"]
         return resp
+
 
 if __name__ == "__main__":
     uvicorn.run(app, port=8000)

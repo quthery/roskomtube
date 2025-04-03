@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
-import { App } from "./App.jsx";
-import { Player } from "./pages/Player.jsx";
+import App from "./App";
+import Player from "@/pages/Player";
 
 const root = document.getElementById("root");
 

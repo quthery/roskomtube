@@ -1,0 +1,74 @@
+a { 
+    text-decoration: none;
+    color: inherit;
+}
+
+.videoCard {
+    width: 100%;
+    max-width: 360px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        height: 202px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .videoInfo {
+        display: flex;
+
+        .channelIcon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            margin: {
+                left: 5px;
+                right: 12px;    
+            }
+            margin-right: 12px;
+            background-color: #f0f0f0;
+        }
+
+        .videoDetails {
+            flex: 1;
+
+            h3 {
+                font: {
+                    size: 16px;
+                    family: 'Inter', sans-serif;
+                    weight: 500;
+                }
+                display: -webkit-box;
+                margin-block: 5px;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .channelName {
+                font: {
+                    size: 14px;
+                    family: 'Inter', sans-serif;
+                    weight: 400;
+                }
+                color: #606060;
+                margin-bottom: 4px;
+            }
+
+            .videoStats {
+                font: {
+                    size: 14px;
+                    family: 'Inter', sans-serif;
+                    weight: 400;
+                }
+                gap: 8px;
+                color: #606060;
+                display: flex;
+            }
+        }
+    }
+} 

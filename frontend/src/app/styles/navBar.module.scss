@@ -1,0 +1,153 @@
+@use "sass:color";
+
+$main-color: rgb(235, 252, 247);
+
+.box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $main-color;
+    border-bottom: 1px solid #05002e;
+    padding: 0 1rem;
+    z-index: 1000;
+    box-sizing: border-box;
+
+    &__left {
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+        min-width: 200px;
+    }
+
+    &__mid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 0 0 auto;
+        min-width: 100px;
+    }
+
+    &__logoLink {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    &__search {
+        width: 100%;
+        padding: 8px 16px;
+        border: 1px solid #05002e;
+        border-radius: 20px 0px 0px 20px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 1s ease;
+
+        &:focus {
+            border-color: color.adjust(#05002e, $lightness: 10%);
+        }
+    }
+
+    &__buttonSearch {
+        width: 3rem;
+        height: 40px;
+        border-radius: 0px 20px 20px 0px;
+        border: 1px solid #05002e;
+        padding: 0;
+        background: none;
+        align-items: center;
+        cursor: pointer;
+        transition: border-color 1s ease;
+
+        &__icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        &_focused {
+            border-color: color.adjust(#05002e, $lightness: 10%);
+        }
+    }
+
+    &__button {
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        background-color: #05002e;
+        white-space: nowrap;
+        
+        &:hover {
+            background-color: color.adjust(#05002e, $lightness: 10%);
+        }
+    }
+
+    &__logo {
+        width: 5.5rem;
+        height: 5.5rem;
+        display: block;
+    }
+
+    &__logoText {
+        width: 9rem;
+        margin-top: 0.5rem;
+        height: 100%;
+        display: block;
+    }
+
+    &__roundButton {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        border: none;
+        background-color: rgba(0, 123, 255, 0.2);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: rgba(0, 123, 255, 0.3);
+        }
+
+        &__icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+    }
+
+    &__youtubeButton {
+        padding: 10px 16px;
+        border-radius: 20px;
+        border: none;
+        background-color: #4285f4;
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: #3367d6;
+        }
+    }
+}
+
