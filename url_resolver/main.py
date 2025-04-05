@@ -3,7 +3,9 @@ from yt_dlp import YoutubeDL
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import json
-
+from fastapi import FastAPI, Response
+import httpx
+from starlette.responses import StreamingResponse
 app = FastAPI()
 origins = [
     "http://localhost.tiangolo.com",
@@ -48,7 +50,31 @@ async def yt_stream_url(url: str):
             elif format.get("acodec") != "none" and format.get("vcodec") == "none" and format.get("url", "").startswith("https://manifest.googlevideo.com") == False:
                 resp["audio"] = format["url"]
         return resp
+@app.get("/api/proxy/video")
+async def proxy_video(url: str):
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, follow_redirects=True)
+        return StreamingResponse(
+            response.aiter_bytes(),
+            media_type="video/mp4",
+            headers={
+                "Accept-Ranges": "bytes",
+                "Content-Length": response.headers.get("Content-Length", ""),
+            }
+        )
 
+@app.get("/api/proxy/audio")
+async def proxy_audio(url: str):
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, follow_redirects=True)
+        return StreamingResponse(
+            response.aiter_bytes(),
+            media_type="audio/webm",
+            headers={
+                "Accept-Ranges": "bytes",
+                "Content-Length": response.headers.get("Content-Length", ""),
+            }
+        )
 
 if __name__ == "__main__":
     uvicorn.run(app, port=8000)
