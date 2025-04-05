@@ -1,10 +1,12 @@
 import styles from './Player.module.css'
 import HLSPlayer from '@/widgets/HLSPlayer'
-export default function Player() {
+import Plyr from 'plyr-react'
+import CustomVideoPlayer from '@/widgets/CustomVideoPlayer'
 
+const VIDEO_URL = "localhost:8080/v1/stream?url=https://rr5---sn-5hne6n6e.googlevideo.com/videoplayback?expire=1743895117%26ei=7WXxZ5DtDMuSv_IPpPTv6AY%26ip=85.192.24.173%26id=o-AIK36apy2BAPOZHgUcPFKtU2oqqWCig7i0U7yD5f-IvJ%26itag=399%26aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399%26source=youtube%26requiressl=yes%26xpc=EgVo2aDSNQ%3D%3D%26rms=au%2Cau%26bui=AccgBcNRVB5JdMe4hXeb5av6xtYoeGY3oH9zycwTGjA7taBssqCF_Mhu8u8J-XrNezBo6zjZX_b0Eyc0%26vprv=1%26svpuc=1%26mime=video%2Fmp4%26ns=suE-8KgD6r8S3s7rPP-Bl_8Q%26rqh=1%26gir=yes%26clen=2192127664%26dur=5303.916%26lmt=1741241059997109%26keepalive=yes%26lmw=1%26c=TVHTML5%26sefc=1%26txp=5537534%26n=rO8cDdVgh-BBHQ%26sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt%26sig=AJfQdSswRAIgHvX_ggiMVZa_Oicf-otpUZRpaHpVEc5Gu7L-eAKWcpYCIFueDTLRpW324yG9bGQrM4z_k7ZyJmTL5IybNDqtQUA0%26redirect_counter=1%26rm=sn-4g5e667e%26rrc=40%26fexp=24350590,24350737,24350827,24350961,24351147,24351149,24351173,24351230,24351283,24351398,24351528,24351544%26req_id=1970c44bc94aa3ee%26cms_redirect=yes%26cmsv=e%26met=1743874363,%26mh=-Z%26mm=39%26mn=sn-5hne6n6e%26ms=ltr%26mt=1743874097%26mv=m%26mvi=5%26pl=24%26tso=846%26lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms,tso%26lsig=ACuhMU0wRQIgBv0h2pdKNGeuX7l5XF3-pglqqsn3qKP2EejcemZ06QcCIQCqwtO5ILbNJJZCkAlV2TS8a1bYLAuc5fPA9dsPgF74Tg%3D%3D"
+const AUDIO_URL = "https://rr5---sn-4g5e6nsd.googlevideo.com/videoplayback?expire=1743896028&ei=fGnxZ--LKeLLv_IPp-n1YQ&ip=85.192.24.173&id=o-AJKmEdwREx8qQgroeLcfjli326ykMtOyx4KzIvFh5n3R&itag=251&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&met=1743874428%2C&mh=-Z&mm=31%2C29&mn=sn-4g5e6nsd%2Csn-4g5ednss&ms=au%2Crdu&mv=m&mvi=5&pl=24&rms=au%2Cau&initcwndbps=967500&bui=AccgBcOGXGn2LuFCzazNMQsXs4cBMH1wF4gVEHr0XAtOoQZmv6ntMDTSJyexM7xFDVF51CxaDhGfWrug&vprv=1&svpuc=1&mime=audio%2Fwebm&ns=wYpd-bOSBd1cL4Va5Rh4A5oQ&rqh=1&gir=yes&clen=80556178&dur=5303.941&lmt=1741134640001055&mt=1743873903&fvip=1&keepalive=yes&lmw=1&c=TVHTML5&sefc=1&txp=5532534&n=BAvORDkfhRy11Q&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRAIgQWfV0Yu-LA5a_6SZ9CXwDqQdM15hRoya1Y0BQxPhqKECIBvmJ_V7DORHJHaHaGwpZaippZ2PPg8o00XTIn2cDP_e&lsparams=met%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Crms%2Cinitcwndbps&lsig=ACuhMU0wRgIhAJyb5fc7yyNQmiOq0WfINIIJgIkkJ-0A_4DZZQWjkWODAiEAqUdsCS2rSIkOcub1HP4qPg8WMuJ9vRZpnBvpgWLbpBM%3D"
+export default function Player() {
     return (
-        <div className={styles.playerContainer}>
-            <HLSPlayer streamUrl="http://localhost:3000/streams/368884d5-5d34-49ad-9696-54b3dae352ca/playlist.m3u8"/>
-        </div>
+        <CustomVideoPlayer audio_url={AUDIO_URL} video_url={VIDEO_URL}></CustomVideoPlayer>
     )
 }
