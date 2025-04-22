@@ -1,0 +1,331 @@
+.videoContainer {
+  width: 85%;
+  max-width: 65rem;
+  min-width: 800px;
+  margin: {
+    top: 1rem;
+    bottom: 1rem;
+    left: 0rem;
+    right: 1rem;
+  }; 
+  padding:  {
+    top: 25px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  };
+}
+
+.videoTitle {
+  font-size: 1.3em;
+  font-family: "Roboto", "Arial", sans-serif;
+  color: black;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.videoDescription {
+  border: 0px solid rgba(100, 100, 100, 1);
+  margin-top: 10px;
+  border-radius: 15px;
+  padding-inline: 15px;
+  padding-top: 5px;
+  padding-bottom: 1px;
+  gap: 1px;
+  background-color: rgba(99, 97, 97, 0.4);
+}
+
+.videoDescriptionText {
+  margin-block: 10px;
+  font-size: 15px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: bold;
+}
+
+.channelInfo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+.channelImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.channelNameContainer {
+  min-width: 150px;
+  width: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.channelLink {
+  text-decoration:
+none;
+  color: inherit;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.channelName {
+  font-size: 1em;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  color: black;
+  width: 10.5rem;
+  height: 1rem;
+  overflow-wrap: break-word;
+  margin: 0px;
+  margin-bottom: 0.3rem;
+}
+
+.channelSubscribers {
+  font-size: 15px;
+  font-weight: 530;
+  color: #747474;
+  font-family: "Roboto", "Arial", sans-serif;
+  margin: 0px;
+}
+
+.subscribeBtn {
+  height: 45px;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c40000;
+    transition: background-color 0.3s ease;
+  }
+}
+
+.likeDislikeContainer {
+  margin-left: auto;
+  display: flex;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 5px;
+  align-items: center;
+}
+
+.likesContainer {
+  min-width: 100px;
+  height: 45px;
+  background-color: rgba(99, 97, 97, 0.4);
+  border-radius: 25px 0px 0px 25px;
+  border-right: 1px solid rgba(100, 100, 100, 1);
+  display: flex;
+
+  &:hover {
+    background-color: rgba(99, 97, 97, 0.6);
+    transition: background-color 0.3s ease;
+  }
+}
+
+.likeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 7px 0px 0px 10px;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.likesCount {
+  color: black;
+  font-family: sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  padding-left: 10px;
+  padding-right: 5px;
+  padding-top: 10px;
+  height: 20px;
+  margin: 0px;
+}
+
+.dislikeBtn {
+  background: none;
+  padding-left: 0px;
+  padding-top: 7px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  border-radius: 0px 25px 25px 0px;
+  background-color: rgba(99, 97, 97, 0.4);
+  width: 55px;
+  height: 45px;
+
+  &:hover {
+    background-color: rgba(99, 97, 97, 0.6);
+    transition: background-color 0.3s ease;
+  }
+}
+
+.likeImg {
+  width: 40px;
+  height: 30px;
+}
+
+.dislikeImg {
+  width: 30px;
+  height: 30px;
+}
+
+.shareContainer {
+  height: 45px;
+  background-color: rgba(99, 97, 97, 0.4);
+  border: none;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 25px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(99, 97, 97, 0.6);
+    transition: background-color 0.3s ease;
+  }
+}
+
+.shareImg {
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+}
+
+.shareText {
+  margin: 0px;
+  padding-left: 2.5px;
+  color: black;
+  font-family: sans-serif;
+  font-size: 17px;
+}
+
+.removeAdContainer {
+  background-color: rgba(99, 97, 97, 0.4);
+  border-radius: 25px;
+  margin-left: 10px;
+}
+
+.removeAdBtn {
+  height: 45px;
+  border-radius: 25px;
+  background: none;
+  color: black;
+  border: none;
+  padding: 10px 10px 10px 10px;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba(99, 97, 97, 0.6);
+    transition: background-color 0.3s ease;
+  }
+}
+
+.adImg {
+  width: 30px;
+  height: 30px;
+  margin-right: 2.5px;
+}
+
+.videoInfoDesc {
+  display: flex;
+  height: 20px;
+  margin-bottom: 15px;
+  margin-left: 2px;
+  gap: 10px;
+}
+
+.views {
+  margin-top: 6px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 16px;
+  margin-bottom: 0px;
+}
+
+.postedAgo {
+  margin-top: 6px;
+  font-size: 16px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 0px;
+}
+
+.commentsContainer {
+  margin-top: 5px;
+}
+
+.commentsInfo {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.sortCommentsBtn {
+  height: 30px;
+}
+
+.commentsInputContainer {
+  margin-top: 20px;
+  display: flex;
+  gap: 5px;
+}
+
+.commentsInput {
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid rgba(99, 97, 97, 0.4);
+  padding-left: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+.shareContainer, .removeAdContainer {
+  min-width: 120px;
+  height: 45px;
+  background-color: rgba(99, 97, 97, 0.4);
+  border: none;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 25px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(99, 97, 97, 0.6);
+    transition: background-color 0.3s ease;
+  }
+}
+
+.shareImg {
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+}
+
+.shareText {
+  margin: 0px;
+  padding-left: 2.5px;
+  color: black;
+  font-family: sans-serif;
+  font-size: 17px;
+}

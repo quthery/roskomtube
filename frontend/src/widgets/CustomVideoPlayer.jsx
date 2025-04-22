@@ -116,7 +116,7 @@ export default function VideoPlayer({ video_url, audio_url }) {
 
   return (
     <div className={styles.container}>
-      <video ref={videoRef} className="plyr">
+      <video ref={videoRef} className="plyr" id="plyr">
         <source src={video_url} type="video/mp4" />
       </video>
       <audio ref={audioRef}>

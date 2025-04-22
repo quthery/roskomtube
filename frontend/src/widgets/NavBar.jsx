@@ -1,9 +1,8 @@
-import { useEffect, useRef } from 'react';
-import Hls from 'hls.js';
+import { useEffect, useRef } from "react";
+import Hls from "hls.js";
 
 export function VideoPlayer({ manifestUrl }) {
   const videoRef = useRef(null);
-
   useEffect(() => {
     if (!manifestUrl) return;
 
@@ -28,24 +27,24 @@ export function VideoPlayer({ manifestUrl }) {
       return () => {
         hls.destroy();
       };
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       // Нативная поддержка HLS для Safari
       video.src = manifestUrl;
     }
   }, [manifestUrl]);
 
   return (
-    <div style={{ width: '100%', maxWidth: '1280px', margin: '0 auto' }}>
+    <div style={{ width: "100%", maxWidth: "1280px", margin: "0 auto" }}>
       <video
         ref={videoRef}
         controls
         style={{
-          width: '100%',
-          height: 'auto',
-          maxHeight: '720px',
-          backgroundColor: '#000',
+          width: "100%",
+          height: "auto",
+          maxHeight: "720px",
+          backgroundColor: "#000",
         }}
       />
     </div>
   );
-} 
+}

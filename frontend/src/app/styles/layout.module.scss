@@ -1,17 +1,25 @@
 .layout {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #ffffff;
 }
 
 .content {
-    display: flex;
-    flex: 1;
-    margin-top: 4rem; // Высота NavBar
+  display: flex;
+  flex: 1;
+  margin-top: 56px; // Высота NavBar
 }
 
 .main {
-    flex: 1;
-    padding: 1rem;
-    margin-left: 240px; // Ширина SideBar
-} 
+  flex: 1;
+  padding: 24px;
+  margin-left: 240px; // Ширина SideBar
+  max-width: calc(100% - 600px); // Оставляем место справа для рекомендаций
+  min-height: calc(100vh - 56px);
+}
+.mainWithoutSidebar {
+  flex: 1;
+  padding: 24px;
+  margin-left: 0px; // Ширина SideBar
+}
